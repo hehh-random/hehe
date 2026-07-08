@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Birthday ❤️</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =======================================================
+BACKGROUND DECORATIONS
+======================================================= -->
+
+<div class="background">
+
+    <div class="gradient"></div>
+
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+
+    <div id="stars"></div>
+
+    <div id="sparkles"></div>
+
+    <div id="floatingHearts"></div>
+
+    <div id="fireflies"></div>
+
+</div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow"></div>
+
+<!-- Ripple Container -->
+<div id="ripple-container"></div>
+
+<!-- Confetti -->
+<div id="confetti-container"></div>
+
+<!-- =======================================================
+LOADING SCREEN
+======================================================= -->
+
+<section id="loadingScreen" class="screen active">
+
+    <div class="loading-card glass">
+
+        <div class="loading-stars">
+
+            ✨ ✨ ⭐ 💖 ⭐ ✨
+
+        </div>
+
+        <div class="loader"></div>
+
+        <h1>
+            Preparing your birthday surprise...
+        </h1>
+
+        <p>
+            Just a tiny bit longer...
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+PASSCODE SCREEN
+======================================================= -->
+
+<section id="vaultScreen" class="screen">
+
+    <div class="vault-card glass">
+
+        <div class="lock-icon">
+
+            🔒
+
+        </div>
+
+        <h1>
+
+            Secret Love Vault
+
+        </h1>
+
+        <p>
+
+            Enter the birthday code ❤️
+
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            maxlength="4"
+            readonly>
+
+        <p id="passwordMessage"></p>
+
+        <!-- Keypad -->
+
+        <div class="keypad">
+
+            <button class="key">1</button>
+            <button class="key">2</button>
+            <button class="key">3</button>
+
+            <button class="key">4</button>
+            <button class="key">5</button>
+            <button class="key">6</button>
+
+            <button class="key">7</button>
+            <button class="key">8</button>
+            <button class="key">9</button>
+
+            <button id="clearBtn">
+
+                ⌫
+
+            </button>
+
+            <button class="key">0</button>
+
+            <button id="enterBtn">
+
+                ❤️
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+MIDNIGHT SCREEN
+======================================================= -->
+
+<section id="midnightScreen" class="screen">
+
+    <div class="glass midnight-card">
+
+        <h1>
+
+            🌙 Midnight Surprise
+
+        </h1>
+
+        <div id="digitalClock">
+
+            00:00:00
+
+        </div>
+
+        <div id="countdownContainer">
+
+            <h2 id="countdownTitle">
+
+                Counting down...
+
+            </h2>
+
+            <p id="countdownText">
+
+                Loading...
+
+            </p>
+
+        </div>
+
+        <button id="continueBtn">
+
+            Continue ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+HOME PAGE
+======================================================= -->
+
+<section id="homeScreen" class="screen">
+
+    <div class="glass hero">
+
+        <h1>
+
+            Happy Birthday ❤️
+
+        </h1>
+
+        <p id="welcomeText">
+
+            Today is all about you.
+
+            I wanted to make something a little different...
+
+            Something you can explore at your own pace,
+
+            filled with tiny surprises,
+
+            sweet memories,
+
+            and lots of love.
+
+            So...
+
+            welcome to your little magical world. ✨
+
+        </p>
+
+        <button id="beginAdventure">
+
+            🎁 Begin Adventure
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+TREASURE HUNT
+======================================================= -->
+
+<section id="treasureScreen" class="screen">
+
+    <div class="treasure-header">
+
+        <h1>
+
+            🎁 Birthday Treasure Hunt
+
+        </h1>
+
+        <p>
+
+            Open every gift to unlock the final surprise.
+
+        </p>
+
+    </div>
+
+    <!-- Progress -->
+
+    <div class="progress-wrapper glass">
+
+        <div class="progress-info">
+
+            <span>
+
+                Opened:
+
+            </span>
+
+            <span id="giftProgress">
+
+                0 / 6 Gifts
+
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div id="progressFill"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Gift Grid -->
+
+    <div class="gift-grid">
+
+<!-- ===========================
+Gift 1
+=========================== -->
+
+<div class="gift-card glass" data-gift="1">
+
+<div class="gift-icon">
+
+💌
+
+</div>
+
+<h2>
+
+Love Letter
+
+</h2>
+
+<p>
+
+A little letter from my heart.
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+<!-- ===========================
+Gift 2
+=========================== -->
+
+<div class="gift-card glass" data-gift="2">
+
+<div class="gift-icon">
+
+📷
+
+</div>
+
+<h2>
+
+Polaroid Gallery
+
+</h2>
+
+<p>
+
+Some tiny memories.
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+<!-- ===========================
+Gift 3
+=========================== -->
+
+<div class="gift-card glass" data-gift="3">
+
+<div class="gift-icon">
+
+🎂
+
+</div>
+
+<h2>
+
+Birthday Cake
+
+</h2>
+
+<p>
+
+Make a wish...
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+<!-- ===========================
+Gift 4
+=========================== -->
+
+<div class="gift-card glass" data-gift="4">
+
+<div class="gift-icon">
+
+🫙
+
+</div>
+
+<h2>
+
+Memory Notes
+
+</h2>
+
+<p>
+
+Tiny moments.
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+<!-- ===========================
+Gift 5
+=========================== -->
+
+<div class="gift-card glass" data-gift="5">
+
+<div class="gift-icon">
+
+🌸
+
+</div>
+
+<h2>
+
+Reasons I Love You
+
+</h2>
+
+<p>
+
+Tap every flower.
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+<!-- ===========================
+Gift 6
+=========================== -->
+
+<div class="gift-card glass" data-gift="6">
+
+<div class="gift-icon">
+
+🎵
+
+</div>
+
+<h2>
+
+Our Song
+
+</h2>
+
+<p>
+
+Press play ❤️
+
+</p>
+
+<button class="openGift">
+
+Open
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Final Surprise Lock -->
+
+<div class="final-lock glass">
+
+<h2>
+
+🔐 Final Surprise
+
+</h2>
+
+<p>
+
+There is one last surprise waiting...
+
+</p>
+
+<button id="finalButton" disabled>
+
+Locked
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =======================================================
+GIFT MODAL STARTS HERE
+======================================================= -->
+
+<div id="giftModal" class="modal">
+
+<div class="modal-content glass">
+
+<button class="closeModal">
+
+✕
+
+</button>
+
+<div id="modalBody">
+
+<!-- =======================================================
+GIFT 1 — LOVE LETTER
+======================================================= -->
+
+<section id="gift1Content" class="gift-content hidden">
+
+    <h2>💌 A Letter For You</h2>
+
+    <div class="envelope">
+
+        <div class="envelope-front"></div>
+
+        <div class="letter">
+
+            <div id="letterText"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+GIFT 2 — POLAROID GALLERY
+======================================================= -->
+
+<section id="gift2Content" class="gift-content hidden">
+
+    <h2>📷 Our Little Memories</h2>
+
+    <p>
+        Click each Polaroid and wait for it to develop.
+    </p>
+
+    <div id="polaroidGallery" class="polaroid-gallery">
+
+        <!-- Filled automatically by JavaScript -->
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+GIFT 3 — BIRTHDAY CAKE
+======================================================= -->
+
+<section id="gift3Content" class="gift-content hidden">
+
+    <h2>🎂 Make A Wish</h2>
+
+    <p>
+        Tap the candles to blow them out.
+    </p>
+
+    <div class="cake-wrapper">
+
+        <div id="cake">
+
+            <div class="candles">
+
+                <div class="candle">
+                    <span class="flame"></span>
+                </div>
+
+                <div class="candle">
+                    <span class="flame"></span>
+                </div>
+
+                <div class="candle">
+                    <span class="flame"></span>
+                </div>
+
+            </div>
+
+            <div class="cake-body"></div>
+
+        </div>
+
+    </div>
+
+    <div id="wishMessage" class="hidden">
+
+        <h3>✨ Make a wish...</h3>
+
+        <p>
+            I hope every wish comes true ❤️
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+GIFT 4 — MEMORY NOTES
+======================================================= -->
+
+<section id="gift4Content" class="gift-content hidden">
+
+    <h2>🫙 Memory Jar</h2>
+
+    <p>
+
+        Pick a folded note.
+
+    </p>
+
+    <div class="jar">
+
+        <button class="memory-note">💌</button>
+        <button class="memory-note">💌</button>
+        <button class="memory-note">💌</button>
+        <button class="memory-note">💌</button>
+        <button class="memory-note">💌</button>
+        <button class="memory-note">💌</button>
+
+    </div>
+
+    <div id="memoryText"></div>
+
+</section>
+
+<!-- =======================================================
+GIFT 5 — REASONS I LOVE YOU
+======================================================= -->
+
+<section id="gift5Content" class="gift-content hidden">
+
+    <h2>🌸 Reasons I Love You</h2>
+
+    <p>
+
+        Click every flower.
+
+    </p>
+
+    <div id="flowerGarden">
+
+        <!-- JavaScript Creates Flowers -->
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+GIFT 6 — MUSIC PLAYER
+======================================================= -->
+
+<section id="gift6Content" class="gift-content hidden">
+
+    <h2>🎵 Our Song ❤️</h2>
+
+    <p>
+
+        Play our song?
+
+    </p>
+
+    <div class="music-player glass">
+
+        <div class="vinyl-player">
+
+            <div id="vinyl"></div>
+
+        </div>
+
+        <div class="music-controls">
+
+            <button id="playMusic">
+
+                ▶
+
+            </button>
+
+            <button id="pauseMusic">
+
+                ❚❚
+
+            </button>
+
+            <input
+                type="range"
+                id="volumeSlider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.5">
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =======================================================
+FINAL SURPRISE
+======================================================= -->
+
+<section id="finalScreen" class="screen">
+
+    <div class="glass final-card">
+
+        <h1>
+
+            ✨ One Last Surprise ✨
+
+        </h1>
+
+        <div id="finalTypewriter"></div>
+
+        <button id="restartAdventure">
+
+            💖 Explore Again
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =======================================================
+AUDIO
+Replace this file with your own song.
+======================================================= -->
+
+<audio id="bgMusic">
+
+    <source src="music/our-song.mp3" type="audio/mpeg">
+
+</audio>
+
+<!-- =======================================================
+FLOATING HEART TEMPLATE
+======================================================= -->
+
+<template id="heartTemplate">
+
+    <div class="floating-heart">
+
+        ❤️
+
+    </div>
+
+</template>
+
+<!-- =======================================================
+SPARKLE TEMPLATE
+======================================================= -->
+
+<template id="sparkleTemplate">
+
+    <div class="sparkle">
+
+        ✨
+
+    </div>
+
+</template>
+
+<!-- =======================================================
+FIREFLY TEMPLATE
+======================================================= -->
+
+<template id="fireflyTemplate">
+
+    <div class="firefly"></div>
+
+</template>
+
+<!-- =======================================================
+SCRIPT
+======================================================= -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
