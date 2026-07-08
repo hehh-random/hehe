@@ -619,3 +619,1702 @@ Love Letter
 Polaroids
 Cake
 =========================================================*/
+
+
+/* =========================================================
+
+   SCRIPT.JS PART 2
+
+   Gift Modal
+   Love Letter
+   Polaroids
+   Birthday Cake
+   Confetti
+
+=========================================================*/
+
+
+
+/* ===============================
+GIFT MODAL SYSTEM
+===============================*/
+
+
+const modal =
+document.getElementById(
+"giftModal"
+);
+
+
+const modalBody =
+document.getElementById(
+"modalBody"
+);
+
+
+const closeModal =
+document.querySelector(
+".closeModal"
+);
+
+
+
+function openGiftModal(id){
+
+
+modal.classList.add(
+"show"
+);
+
+
+
+document
+.querySelectorAll(
+".gift-content"
+)
+.forEach(section=>{
+
+
+section.classList.add(
+"hidden"
+);
+
+
+});
+
+
+
+const gift =
+document.getElementById(
+`gift${id}Content`
+);
+
+
+
+if(gift){
+
+gift.classList.remove(
+"hidden"
+);
+
+
+}
+
+
+
+/* Start specific gift */
+
+
+if(id==="1"){
+
+startLetter();
+
+}
+
+
+if(id==="2"){
+
+createPolaroids();
+
+}
+
+
+if(id==="3"){
+
+startCake();
+
+}
+
+
+
+}
+
+
+
+closeModal.onclick =
+()=>{
+
+
+modal.classList.remove(
+"show"
+);
+
+
+};
+
+
+
+window.onclick =
+(e)=>{
+
+
+if(
+e.target === modal
+){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+
+};
+
+
+
+
+
+/* ===============================
+GIFT 1
+LOVE LETTER
+===============================*/
+
+
+const letterMessage = [
+
+"Hey birthday person ❤️",
+
+"I wanted to create something special for you.",
+
+"Not just a normal birthday wish...",
+
+"but a tiny magical place filled with memories.",
+
+"Thank you for all the smiles, laughs, and moments we share.",
+
+"I hope your day is as beautiful as your heart.",
+
+"Happy Birthday ❤️"
+
+];
+
+
+
+const envelope =
+document.querySelector(
+".envelope"
+);
+
+
+
+const letterText =
+document.getElementById(
+"letterText"
+);
+
+
+
+function startLetter(){
+
+
+letterText.innerHTML="";
+
+
+envelope.onclick =
+()=>{
+
+
+envelope.classList.add(
+"open"
+);
+
+
+setTimeout(()=>{
+
+
+typeLetter();
+
+
+},900);
+
+
+};
+
+
+}
+
+
+
+function typeLetter(){
+
+
+let text =
+letterMessage.join(
+"\n\n"
+);
+
+
+
+let index=0;
+
+
+
+function typing(){
+
+
+if(
+index < text.length
+){
+
+
+letterText.innerHTML +=
+text[index]
+.replace(
+"\n",
+"<br>"
+);
+
+
+index++;
+
+
+setTimeout(
+typing,
+45
+);
+
+
+}
+
+
+}
+
+
+
+typing();
+
+
+}
+
+
+
+
+
+
+/* ===============================
+GIFT 2
+POLAROID GALLERY
+===============================*/
+
+
+
+const photos = [
+
+{
+image:"images/photo1.jpg",
+caption:"Our first memory ❤️"
+},
+
+{
+image:"images/photo2.jpg",
+caption:"A beautiful moment ✨"
+},
+
+{
+image:"images/photo3.jpg",
+caption:"Always smiling 💗"
+},
+
+{
+image:"images/photo4.jpg",
+caption:"Little adventures 🌸"
+},
+
+{
+image:"images/photo5.jpg",
+caption:"Forever memories 🌙"
+},
+
+{
+image:"images/photo6.jpg",
+caption:"My favourite person ❤️"
+}
+
+];
+
+
+
+function createPolaroids(){
+
+
+const gallery =
+document.getElementById(
+"polaroidGallery"
+);
+
+
+
+gallery.innerHTML="";
+
+
+
+photos.forEach(photo=>{
+
+
+const card =
+document.createElement(
+"div"
+);
+
+
+card.className =
+"polaroid";
+
+
+
+card.innerHTML = `
+
+<div class="polaroid-image">
+
+<img src="${photo.image}">
+
+</div>
+
+
+<div class="polaroid-caption">
+
+${photo.caption}
+
+</div>
+
+`;
+
+
+
+card.onclick =
+()=>{
+
+
+if(
+!card.classList.contains(
+"developed"
+)
+){
+
+
+card.classList.add(
+"shake"
+);
+
+
+
+setTimeout(()=>{
+
+
+card.classList.remove(
+"shake"
+);
+
+
+card.classList.add(
+"developed"
+);
+
+
+
+},700);
+
+
+}
+
+
+
+};
+
+
+
+gallery.appendChild(
+card
+);
+
+
+
+});
+
+
+}
+
+
+
+
+/* ===============================
+GIFT 3
+BIRTHDAY CAKE
+===============================*/
+
+
+
+let cakeStarted=false;
+
+
+
+function startCake(){
+
+
+if(cakeStarted)
+return;
+
+
+cakeStarted=true;
+
+
+
+const candles =
+document.querySelectorAll(
+".candle"
+);
+
+
+
+candles.forEach(candle=>{
+
+
+candle.onclick =
+()=>{
+
+
+candle.classList.add(
+"off"
+);
+
+
+
+checkCandles();
+
+
+};
+
+
+
+});
+
+
+}
+
+
+
+function checkCandles(){
+
+
+const flames =
+document.querySelectorAll(
+".flame:not(.hidden)"
+);
+
+
+
+let remaining=0;
+
+
+
+document
+.querySelectorAll(
+".candle"
+)
+.forEach(c=>{
+
+
+if(
+!c.classList.contains(
+"off"
+)
+){
+
+remaining++;
+
+}
+
+
+});
+
+
+
+if(
+remaining===0
+){
+
+
+document
+.getElementById(
+"wishMessage"
+)
+.classList.remove(
+"hidden"
+);
+
+
+
+createConfetti();
+
+
+}
+
+
+}
+
+
+
+
+
+/* ===============================
+CONFETTI
+===============================*/
+
+
+function createConfetti(){
+
+
+const container =
+document.getElementById(
+"confetti-container"
+);
+
+
+
+const colors = [
+
+"💗",
+"✨",
+"🎉",
+"🌸",
+"⭐"
+
+];
+
+
+
+for(
+let i=0;
+i<80;
+i++
+){
+
+
+const piece =
+document.createElement(
+"div"
+);
+
+
+
+piece.className =
+"confetti-piece";
+
+
+
+piece.innerHTML =
+colors[
+Math.floor(
+Math.random()
+*
+colors.length
+)
+];
+
+
+
+piece.style.left =
+
+Math.random()*100
++
+"%";
+
+
+
+piece.style.animationDelay =
+
+Math.random()*2
++
+"s";
+
+
+
+piece.style.fontSize =
+
+(
+Math.random()*20+10
+)
++
+"px";
+
+
+
+container.appendChild(
+piece
+);
+
+
+
+setTimeout(()=>{
+
+
+piece.remove();
+
+
+},5000);
+
+
+
+}
+
+
+
+}
+
+
+/* ===============================
+END PART 2
+
+NEXT:
+Memory Jar
+Reasons Flowers
+Music Player
+
+===============================*/
+
+
+
+
+
+
+
+/* =========================================================
+
+   SCRIPT.JS PART 3
+
+   Memory Jar
+   Reasons Flowers
+   Music Player
+
+=========================================================*/
+
+
+
+/* ===============================
+GIFT 4
+MEMORY JAR
+===============================*/
+
+
+const memories = [
+
+"Remember when we laughed for no reason? ❤️",
+
+"That one conversation I will never forget ✨",
+
+"Every small moment with you becomes special 🌸",
+
+"Thank you for always being there 💗",
+
+"You make ordinary days feel magical 🌙",
+
+"I hope we create many more memories together ⭐"
+
+];
+
+
+
+const memoryButtons =
+document.querySelectorAll(
+".memory-note"
+);
+
+
+const memoryText =
+document.getElementById(
+"memoryText"
+);
+
+
+
+memoryButtons.forEach(button=>{
+
+
+button.onclick =
+()=>{
+
+
+button.classList.add(
+"open"
+);
+
+
+
+let randomMemory =
+
+memories[
+Math.floor(
+Math.random()
+*
+memories.length
+)
+];
+
+
+
+memoryText.innerHTML =
+
+randomMemory;
+
+
+
+};
+
+
+});
+
+
+
+
+
+
+/* ===============================
+GIFT 5
+REASONS I LOVE YOU
+===============================*/
+
+
+const reasons = [
+
+"You always make me smile ❤️",
+
+"Your kindness is beautiful ✨",
+
+"You make every moment better 🌸",
+
+"You understand me like nobody else 💗",
+
+"Your laugh is my favourite sound 🌙",
+
+"You support me when I need it ⭐",
+
+"You make normal days special 💕",
+
+"You are my favourite person ❤️",
+
+"You bring happiness everywhere you go 🌷",
+
+"Because you are simply you 💖"
+
+];
+
+
+
+function createFlowers(){
+
+
+const garden =
+document.getElementById(
+"flowerGarden"
+);
+
+
+
+if(!garden)
+return;
+
+
+
+garden.innerHTML="";
+
+
+
+reasons.forEach(reason=>{
+
+
+const flower =
+document.createElement(
+"div"
+);
+
+
+
+flower.className =
+"flower";
+
+
+
+flower.innerHTML = `
+
+<div class="flower-inner">
+
+
+<div class="flower-front">
+
+🌸
+
+</div>
+
+
+<div class="flower-back">
+
+${reason}
+
+</div>
+
+
+</div>
+
+`;
+
+
+
+flower.onclick =
+()=>{
+
+
+flower.classList.toggle(
+"open"
+);
+
+
+};
+
+
+
+garden.appendChild(
+flower
+);
+
+
+
+});
+
+
+}
+
+
+
+createFlowers();
+
+
+
+
+
+
+/* ===============================
+GIFT 6
+MUSIC PLAYER
+===============================*/
+
+
+const music =
+document.getElementById(
+"bgMusic"
+);
+
+
+
+const playButton =
+document.getElementById(
+"playMusic"
+);
+
+
+
+const pauseButton =
+document.getElementById(
+"pauseMusic"
+);
+
+
+
+const volumeSlider =
+document.getElementById(
+"volumeSlider"
+);
+
+
+
+const vinyl =
+document.getElementById(
+"vinyl"
+);
+
+
+
+
+
+playButton.onclick =
+()=>{
+
+
+music.play();
+
+
+vinyl.classList.add(
+"playing"
+);
+
+
+};
+
+
+
+pauseButton.onclick =
+()=>{
+
+
+music.pause();
+
+
+vinyl.classList.remove(
+"playing"
+);
+
+
+};
+
+
+
+volumeSlider.oninput =
+()=>{
+
+
+music.volume =
+volumeSlider.value;
+
+
+};
+
+
+
+/* ===============================
+RESET MUSIC WHEN CLOSED
+===============================*/
+
+
+closeModal.onclick =
+()=>{
+
+
+modal.classList.remove(
+"show"
+);
+
+
+music.pause();
+
+
+vinyl.classList.remove(
+"playing"
+);
+
+
+};
+
+
+
+
+
+/* ===============================
+END PART 3
+
+NEXT:
+Final Surprise
+Typewriter Ending
+Floating Hearts
+Sparkles
+Fireflies
+Cursor Effects
+
+===============================*/
+  
+  
+  
+  
+  
+/* =========================================================
+
+   SCRIPT.JS PART 4 FINAL
+
+   Final Surprise
+   Typewriter Ending
+   Hearts
+   Sparkles
+   Fireflies
+   Cursor Effects
+   Restart System
+
+=========================================================*/
+
+
+/* ===============================
+FINAL SURPRISE
+===============================*/
+
+
+const finalButton =
+document.getElementById(
+"finalButton"
+);
+
+
+const finalScreen =
+document.getElementById(
+"finalScreen"
+);
+
+
+const finalMessage = [
+
+"I hope this little surprise made you smile ❤️",
+
+"I wanted to create something special",
+
+"because you are someone special ✨",
+
+"Thank you for every laugh, every memory,",
+
+"and every little moment we share 🌸",
+
+"Keep smiling and keep shining 🌙",
+
+"Happy Birthday ❤️"
+
+];
+
+
+
+if(finalButton){
+
+
+finalButton.onclick =
+()=>{
+
+
+if(openedGifts.length === 6){
+
+
+treasureScreen
+.classList.remove(
+"active"
+);
+
+
+
+finalScreen
+.classList.add(
+"active"
+);
+
+
+
+startFinalAnimation();
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
+/* ===============================
+FINAL TYPEWRITER
+===============================*/
+
+
+function startFinalAnimation(){
+
+
+const box =
+document.getElementById(
+"finalTypewriter"
+);
+
+
+box.innerHTML="";
+
+
+let text =
+finalMessage.join(
+"\n\n"
+);
+
+
+
+let index=0;
+
+
+
+function write(){
+
+
+if(index < text.length){
+
+
+box.innerHTML +=
+
+text[index]
+.replace(
+"\n",
+"<br>"
+);
+
+
+
+index++;
+
+
+setTimeout(
+write,
+55
+);
+
+
+
+}
+
+
+}
+
+
+
+write();
+
+
+
+createStars();
+
+createFireflies();
+
+createConfetti();
+
+
+}
+
+
+
+
+
+/* ===============================
+FLOATING HEARTS
+===============================*/
+
+
+function createHeart(){
+
+
+const template =
+document.getElementById(
+"heartTemplate"
+);
+
+
+
+if(!template)
+return;
+
+
+
+const heart =
+template.content
+.cloneNode(true)
+.firstElementChild;
+
+
+
+heart.style.left =
+
+Math.random()*100
++
+"%";
+
+
+
+heart.style.animationDuration =
+
+(
+Math.random()*5+5
+)
++
+"s";
+
+
+
+heart.style.fontSize =
+
+(
+Math.random()*20+15
+)
++
+"px";
+
+
+
+document.body.appendChild(
+heart
+);
+
+
+
+setTimeout(()=>{
+
+
+heart.remove();
+
+
+},9000);
+
+
+
+}
+
+
+
+setInterval(
+createHeart,
+1200
+);
+
+
+
+
+
+
+/* ===============================
+SPARKLE EFFECT
+===============================*/
+
+
+function createSparkle(){
+
+
+const sparkle =
+document.createElement(
+"div"
+);
+
+
+
+sparkle.className =
+"sparkle";
+
+
+sparkle.innerHTML =
+"✨";
+
+
+
+sparkle.style.left =
+
+Math.random()*100
++
+"%";
+
+
+
+sparkle.style.top =
+
+Math.random()*100
++
+"%";
+
+
+
+document.body.appendChild(
+sparkle
+);
+
+
+
+setTimeout(()=>{
+
+
+sparkle.remove();
+
+
+},2000);
+
+
+
+}
+
+
+
+setInterval(
+createSparkle,
+700
+);
+
+
+
+
+
+
+
+/* ===============================
+STARS
+===============================*/
+
+
+function createStars(){
+
+
+for(
+let i=0;
+i<40;
+i++
+){
+
+
+const star =
+document.createElement(
+"div"
+);
+
+
+
+star.className =
+"star";
+
+
+star.innerHTML =
+"⭐";
+
+
+
+star.style.left =
+
+Math.random()*100
++
+"%";
+
+
+
+star.style.top =
+
+Math.random()*100
++
+"%";
+
+
+
+star.style.animationDelay =
+
+Math.random()*3
++
+"s";
+
+
+
+document.body.appendChild(
+star
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+/* ===============================
+FIREFLIES
+===============================*/
+
+
+function createFireflies(){
+
+
+const template =
+document.getElementById(
+"fireflyTemplate"
+);
+
+
+
+if(!template)
+return;
+
+
+
+for(
+let i=0;
+i<25;
+i++
+){
+
+
+const fly =
+template.content
+.cloneNode(true)
+.firstElementChild;
+
+
+
+fly.style.left =
+
+Math.random()*100
++
+"%";
+
+
+
+fly.style.top =
+
+Math.random()*100
++
+"%";
+
+
+
+fly.style.animationDelay =
+
+Math.random()*5
++
+"s";
+
+
+
+document.body.appendChild(
+fly
+);
+
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+/* ===============================
+CURSOR GLOW
+===============================*/
+
+
+const cursor =
+document.querySelector(
+".cursor-glow"
+);
+
+
+
+document.addEventListener(
+"mousemove",
+(e)=>{
+
+
+if(cursor){
+
+
+cursor.style.left =
+e.clientX+"px";
+
+
+cursor.style.top =
+e.clientY+"px";
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+/* ===============================
+CLICK SPARKLE BURST
+===============================*/
+
+
+document.addEventListener(
+"click",
+(e)=>{
+
+
+for(
+let i=0;
+i<5;
+i++
+){
+
+
+const sparkle =
+document.createElement(
+"div"
+);
+
+
+
+sparkle.className =
+"sparkle";
+
+
+sparkle.innerHTML =
+"✨";
+
+
+
+sparkle.style.left =
+e.clientX+"px";
+
+
+sparkle.style.top =
+e.clientY+"px";
+
+
+
+document.body.appendChild(
+sparkle
+);
+
+
+
+setTimeout(()=>{
+
+
+sparkle.remove();
+
+
+},1000);
+
+
+
+}
+
+
+
+});
+
+
+
+
+
+
+
+
+/* ===============================
+RESTART ADVENTURE
+===============================*/
+
+
+const restart =
+document.getElementById(
+"restartAdventure"
+);
+
+
+
+if(restart){
+
+
+restart.onclick =
+()=>{
+
+
+finalScreen
+.classList.remove(
+"active"
+);
+
+
+
+homeScreen
+.classList.add(
+"active"
+);
+
+
+
+};
+
+}
+
+
+
+
+/* ===============================
+RESET EVERYTHING
+===============================*/
+
+
+function resetBirthdayWebsite(){
+
+
+localStorage.removeItem(
+"openedGifts"
+);
+
+
+
+openedGifts=[];
+
+
+
+updateProgress();
+
+
+
+document
+.querySelectorAll(
+".gift-card"
+)
+.forEach(card=>{
+
+
+card.classList.remove(
+"completed"
+);
+
+
+});
+
+
+
+alert(
+"Birthday surprise reset 💗"
+);
+
+
+}
+
+
+
+/*
+
+Optional:
+
+Add a button with:
+
+onclick="resetBirthdayWebsite()"
+
+if you want a reset option.
+
+*/
+
+
+
+/* =========================================================
+
+   SCRIPT.JS COMPLETE ❤️
+
+=========================================================*/
