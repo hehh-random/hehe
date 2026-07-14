@@ -219,7 +219,7 @@ startClock();
 
 
 
-}
+
 
 
 
@@ -1554,7 +1554,7 @@ vinyl.classList.remove(
 );
 
 
-};
+
 
 
 
