@@ -3,7 +3,7 @@ const PASSWORD = "2524";
 
 const birthdayDate = {
     month: 7,   // Change month (1-12)
-    day: 8      // Change birthday date
+    day: 24      // Change birthday date
 };
 
 
@@ -207,7 +207,7 @@ function wrongPassword(){
 
 
 passwordMessage.innerHTML =
-"Oops... that's not the right birthday code 💗";
+"Oops😔.....";
 
 
 const box =
@@ -337,7 +337,7 @@ countdownTitle.innerHTML =
 
 
 countdownText.innerHTML =
-"Your magical surprise is ready ❤️";
+"sooooo, are you readyyy😛???";
 
 
 return;
@@ -773,13 +773,15 @@ LOVE LETTER
 
 const letterMessage = [
 
-"Hey birthday person ❤️",
+"yooo bbyyyy💋😚😚",
+
+"Happyyyy Birthdayyyy bachaaaaa😭🎉💋",
+
+"Thank you meri life mai aane ke liye aur itna pyaar, care aur patience rkhne ke liye😭.",
 
 "I wanted to create something special for you.",
 
 "Not just a normal birthday wish...",
-
-"but a tiny magical place filled with memories.",
 
 "Thank you for all the smiles, laughs, and moments we share.",
 
