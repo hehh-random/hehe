@@ -1809,98 +1809,21 @@ text-align:center;
 
 
 
-/* ===============================
-MUSIC PLAYER
-===============================*/
+.voice-message{
 
-
-.music-player{
-
-max-width:450px;
-
-margin:40px auto;
-
-padding:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:35px;
 
 }
 
+#playVoice{
 
-.vinyl-player{
-
-display:flex;
-
-justify-content:center;
-
-margin-bottom:35px;
+    padding:18px 35px;
+    font-size:1.1rem;
 
 }
-
-
-#vinyl{
-
-width:180px;
-
-height:180px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-circle,
-#ffd6e8 0 10%,
-#222 11% 70%,
-#111 71%
-);
-
-box-shadow:
-
-0 15px 35px rgba(0,0,0,.2);
-
-}
-
-
-#vinyl.playing{
-
-animation:
-
-spin 5s linear infinite;
-
-}
-
-
-.music-controls{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-
-.music-controls button{
-
-width:55px;
-
-height:55px;
-
-padding:0;
-
-}
-
-
-#volumeSlider{
-
-width:150px;
-
-accent-color:#ff8fc2;
-
-}
-
 
 
 /* ===============================

@@ -678,45 +678,21 @@ GIFT 6 — MUSIC PLAYER
 
 <section id="gift6Content" class="gift-content hidden">
 
-    <h2>🎵 Our Song ❤️</h2>
+    <h2>🎤 A Voice Message For You ❤️</h2>
 
     <p>
-
-        Play our song?
-
+        Press play...
     </p>
 
-    <div class="music-player glass">
+    <div class="voice-message">
 
-        <div class="vinyl-player">
+        <button id="playVoice">
+            ▶ Play Voice Message
+        </button>
 
-            <div id="vinyl"></div>
-
-        </div>
-
-        <div class="music-controls">
-
-            <button id="playMusic">
-
-                ▶
-
-            </button>
-
-            <button id="pauseMusic">
-
-                ❚❚
-
-            </button>
-
-            <input
-                type="range"
-                id="volumeSlider"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.5">
-
-        </div>
+        <audio id="voiceAudio">
+            <source src="voice-message.mp3" type="audio/mpeg">
+        </audio>
 
     </div>
 
@@ -759,10 +735,8 @@ AUDIO
 Replace this file with your own song.
 ======================================================= -->
 
-<audio id="bgMusic">
-
+<audio id="bgMusic" loop>
     <source src="music/our-song.mp3" type="audio/mpeg">
-
 </audio>
 
 <!-- =======================================================

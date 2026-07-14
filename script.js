@@ -169,6 +169,26 @@ wrongPassword();
 
 function unlockVault(){
 
+    passwordMessage.innerHTML = "Unlocked ❤️";
+
+    vaultScreen.classList.add("vault-unlock");
+
+    // Play music
+    music.volume = 0.5;
+    music.play().catch(() => {
+        console.log("Autoplay blocked until user interacts.");
+    });
+
+    setTimeout(() => {
+
+        vaultScreen.classList.remove("active");
+        midnightScreen.classList.add("active");
+        startClock();
+
+    },1000);
+
+}
+
 
 passwordMessage.innerHTML =
 "Unlocked ❤️";
@@ -1495,100 +1515,30 @@ createFlowers();
 
 
 
-/* ===============================
-GIFT 6
-MUSIC PLAYER
-===============================*/
+const voiceAudio = document.getElementById("voiceAudio");
+const playVoice = document.getElementById("playVoice");
 
+if(playVoice){
 
-const music =
-document.getElementById(
-"bgMusic"
-);
+    playVoice.onclick = () =>{
 
+        voiceAudio.currentTime = 0;
+        voiceAudio.play();
 
+    };
 
-const playButton =
-document.getElementById(
-"playMusic"
-);
+}
 
+closeModal.onclick = () => {
 
+    modal.classList.remove("show");
 
-const pauseButton =
-document.getElementById(
-"pauseMusic"
-);
-
-
-
-const volumeSlider =
-document.getElementById(
-"volumeSlider"
-);
-
-
-
-const vinyl =
-document.getElementById(
-"vinyl"
-);
-
-
-
-
-
-playButton.onclick =
-()=>{
-
-
-music.play();
-
-
-vinyl.classList.add(
-"playing"
-);
-
+    if(voiceAudio){
+        voiceAudio.pause();
+        voiceAudio.currentTime = 0;
+    }
 
 };
-
-
-
-pauseButton.onclick =
-()=>{
-
-
-music.pause();
-
-
-vinyl.classList.remove(
-"playing"
-);
-
-
-};
-
-
-
-volumeSlider.oninput =
-()=>{
-
-
-music.volume =
-volumeSlider.value;
-
-
-};
-
-
-
-/* ===============================
-RESET MUSIC WHEN CLOSED
-===============================*/
-
-
-closeModal.onclick =
-()=>{
 
 
 modal.classList.remove(
