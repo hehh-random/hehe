@@ -48,6 +48,8 @@ document.getElementById("continueBtn");
 const beginAdventure =
 document.getElementById("beginAdventure");
 
+const music =
+document.getElementById("bgMusic");
 
 
 /* ===============================
@@ -188,37 +190,6 @@ function unlockVault(){
     },1000);
 
 }
-
-
-passwordMessage.innerHTML =
-"Unlocked ❤️";
-
-
-vaultScreen.classList.add(
-"vault-unlock"
-);
-
-
-setTimeout(()=>{
-
-
-vaultScreen.classList.remove(
-"active"
-);
-
-
-midnightScreen.classList.add(
-"active"
-);
-
-
-startClock();
-
-
-},1000);
-
-
-
 
 
 
@@ -591,6 +562,7 @@ if(
 
 openedGifts.push(id);
 
+card.classList.add("completed");
 
 localStorage.setItem(
 
@@ -751,17 +723,19 @@ startCake();
 
 
 
-closeModal.onclick =
-()=>{
+closeModal.onclick = () => {
 
+    modal.classList.remove("show");
 
-modal.classList.remove(
-"show"
-);
+    if(voiceAudio){
 
+        voiceAudio.pause();
+
+        voiceAudio.currentTime = 0;
+
+    }
 
 };
-
 
 
 window.onclick =
@@ -1541,17 +1515,6 @@ closeModal.onclick = () => {
 };
 
 
-modal.classList.remove(
-"show"
-);
-
-
-music.pause();
-
-
-vinyl.classList.remove(
-"playing"
-);
 
 
 
