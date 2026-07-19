@@ -823,17 +823,33 @@ function typeLetter(){
     let index = 0;
 
     function typing(){
-        
 
         if(index < text.length){
-            
 
             letterText.innerHTML += text[index];
-            
 
             index++;
 
-            setTimeout(typing,40);
+            setTimeout(typing,45);
+
+        }else{
+
+            // Letter finished typing
+            if(!openedGifts.includes("1")){
+
+                openedGifts.push("1");
+
+                localStorage.setItem(
+                    "openedGifts",
+                    JSON.stringify(openedGifts)
+                );
+
+                document
+                .querySelector('[data-gift="1"]')
+                .classList.add("completed");
+
+                updateProgress();
+            }
 
         }
 
@@ -842,6 +858,8 @@ function typeLetter(){
     typing();
 
 }
+
+
 
 function finishGift(){
 
