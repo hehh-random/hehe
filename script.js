@@ -176,10 +176,14 @@ function unlockVault(){
     vaultScreen.classList.add("vault-unlock");
 
     // Play music
+
+    if(music){
     music.volume = 0.5;
     music.play().catch(() => {
-        console.log("Autoplay blocked until user interacts.");
+        console.log("Autoplay blocked.");
     });
+
+}
 
     setTimeout(() => {
 
@@ -230,20 +234,17 @@ MIDNIGHT CLOCK
 ===============================*/
 
 
+let clockInterval;
+
 function startClock(){
 
+clearInterval(clockInterval);
 
 updateClock();
 
-
-setInterval(
-updateClock,
-1000
-);
-
+clockInterval = setInterval(updateClock,1000);
 
 }
-
 
 
 function updateClock(){
@@ -387,43 +388,31 @@ PAGE NAVIGATION
 ===============================*/
 
 
-continueBtn.onclick =
-()=>{
+if (continueBtn) {
 
+continueBtn.onclick = () => {
 
-midnightScreen
-.classList.remove(
-"active"
-);
+midnightScreen.classList.remove("active");
 
-
-homeScreen
-.classList.add(
-"active"
-);
-
+homeScreen.classList.add("active");
 
 };
 
+}
 
 
-beginAdventure.onclick =
-()=>{
 
+if (beginAdventure) {
 
-homeScreen
-.classList.remove(
-"active"
-);
+beginAdventure.onclick = () => {
 
+homeScreen.classList.remove("active");
 
-treasureScreen
-.classList.add(
-"active"
-);
-
+treasureScreen.classList.add("active");
 
 };
+
+}
 
 
 
@@ -723,35 +712,24 @@ startCake();
 
 
 
-closeModal.onclick = () => {
-
-    modal.classList.remove("show");
-
-    if(voiceAudio){
-
-        voiceAudio.pause();
-
-        voiceAudio.currentTime = 0;
-
-    }
-
-};
 
 
-window.onclick =
-(e)=>{
 
+window.onclick = (e)=>{
 
-if(
-e.target === modal
-){
+if(e.target === modal){
 
-modal.classList.remove(
-"show"
-);
+modal.classList.remove("show");
+
+if(voiceAudio){
+
+voiceAudio.pause();
+
+voiceAudio.currentTime = 0;
 
 }
 
+}
 
 };
 
@@ -803,30 +781,23 @@ document.getElementById(
 
 function startLetter(){
 
+letterText.innerHTML = "";
 
-letterText.innerHTML="";
+if(!envelope) return;
 
+envelope.classList.remove("open");
 
-envelope.onclick =
-()=>{
+envelope.onclick = () => {
 
+envelope.classList.add("open");
 
-envelope.classList.add(
-"open"
-);
-
-
-setTimeout(()=>{
-
+setTimeout(() => {
 
 typeLetter();
 
-
 },900);
 
-
 };
-
 
 }
 
@@ -834,52 +805,35 @@ typeLetter();
 
 function typeLetter(){
 
+letterText.innerHTML = "";
 
-let text =
-letterMessage.join(
-"\n\n"
-);
+let text = letterMessage.join("\n\n");
 
-
-
-let index=0;
-
-
+let index = 0;
 
 function typing(){
 
+if(index < text.length){
 
-if(
-index < text.length
-){
+if(text[index] === "\n"){
 
+letterText.innerHTML += "<br>";
 
-letterText.innerHTML +=
-text[index]
-.replace(
-"\n",
-"<br>"
-);
+}else{
 
+letterText.innerHTML += text[index];
+
+}
 
 index++;
 
-
-setTimeout(
-typing,
-45
-);
-
+setTimeout(typing,45);
 
 }
 
-
 }
-
-
 
 typing();
-
 
 }
 
@@ -963,8 +917,7 @@ card.innerHTML = `
 
 <div class="polaroid-image">
 
-<img src="${photo.image}">
-
+<img src="${photo.image}" alt="Memory">
 </div>
 
 
@@ -1070,11 +1023,15 @@ candle.onclick =
 ()=>{
 
 
-candle.classList.add(
-"off"
-);
+candle.classList.add("off");
 
+const flame = candle.querySelector(".flame");
 
+if(flame){
+
+flame.classList.add("hidden");
+
+}
 
 checkCandles();
 
@@ -1492,27 +1449,35 @@ createFlowers();
 const voiceAudio = document.getElementById("voiceAudio");
 const playVoice = document.getElementById("playVoice");
 
-if(playVoice){
+if(playVoice && voiceAudio){
 
-    playVoice.onclick = () =>{
+playVoice.onclick = () => {
 
-        voiceAudio.currentTime = 0;
-        voiceAudio.play();
+voiceAudio.currentTime = 0;
 
-    };
+voiceAudio.play();
+
+};
 
 }
 
+if(closeModal){
+
 closeModal.onclick = () => {
 
-    modal.classList.remove("show");
+modal.classList.remove("show");
 
-    if(voiceAudio){
-        voiceAudio.pause();
-        voiceAudio.currentTime = 0;
-    }
+if(voiceAudio){
+
+voiceAudio.pause();
+
+voiceAudio.currentTime = 0;
+
+}
 
 };
+
+}
 
 
 
