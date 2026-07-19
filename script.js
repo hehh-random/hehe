@@ -323,89 +323,59 @@ document.getElementById(
 
 function checkBirthday(now){
 
-    const birthday = new Date(
+    let birthday = new Date(
         now.getFullYear(),
         birthdayDate.month - 1,
         birthdayDate.day,
         0,0,0
     );
 
-    const countdownText =
-        document.getElementById("countdownText");
-
     const countdownTitle =
         document.getElementById("countdownTitle");
 
-    // Birthday has arrived
-    if (
+    const countdownText =
+        document.getElementById("countdownText");
+
+    // Birthday today
+    if(
         now.getMonth() === birthdayDate.month - 1 &&
         now.getDate() === birthdayDate.day
-    ) {
+    ){
 
         countdownTitle.innerHTML =
             "It's finally your birthday!! 🎉";
 
         countdownText.innerHTML =
-            "Sooooo... are you readyyy? 😛❤️";
+            "Soooo... are you readyyy? 😛❤️";
 
         return;
     }
 
-    // Countdown
-    let difference = birthday - now;
-
-    if (difference < 0) {
-        birthday.setFullYear(now.getFullYear() + 1);
-        difference = birthday - now;
+    // If birthday already passed this year
+    if(now > birthday){
+        birthday.setFullYear(now.getFullYear()+1);
     }
 
-    const h = Math.floor(difference / 1000 / 60 / 60);
-    const m = Math.floor((difference / 1000 / 60) % 60);
-    const s = Math.floor((difference / 1000) % 60);
+    const difference = birthday - now;
+
+    const days =
+        Math.floor(difference/(1000*60*60*24));
+
+    const hours =
+        Math.floor((difference/(1000*60*60))%24);
+
+    const minutes =
+        Math.floor((difference/(1000*60))%60);
+
+    const seconds =
+        Math.floor((difference/1000)%60);
 
     countdownTitle.innerHTML =
         "Almost time... 🌙";
 
     countdownText.innerHTML =
-        `Only ${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")} until your surprise.`;
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
-
-
-let h =
-Math.floor(
-difference /1000/60/60
-);
-
-
-
-let m =
-Math.floor(
-(difference/1000/60)%60
-);
-
-
-
-let s =
-Math.floor(
-(difference/1000)%60
-);
-
-
-
-countdownTitle.innerHTML =
-"Almost time... 🌙";
-
-
-
-countdownText.innerHTML =
-
-`Only ${String(h).padStart(2,"0")}:
-${String(m).padStart(2,"0")}:
-${String(s).padStart(2,"0")}
-until your surprise.`;
-
-
 
 }
 
@@ -798,58 +768,55 @@ const letterMessage = [
 ];
 
 
-
 const envelope =
-document.querySelector(
-".envelope"
-);
-
-
+document.querySelector(".envelope");
 
 const letterText =
-document.getElementById(
-"letterText"
-);
+document.getElementById("letterText");
 
+function startLetter(){
 
+    letterText.innerHTML="";
 
+    envelope.classList.remove("open");
+
+    envelope.onclick = ()=>{
+
+        envelope.classList.add("open");
+
+        setTimeout(()=>{
+            typeLetter();
+        },700);
+
+    };
+
+}
 
 function typeLetter(){
 
-    letterText.innerHTML = "";
+    letterText.innerHTML="";
 
-    let text = letterMessage.join("<br><br>");
+    let text = letterMessage.join("\n\n");
 
-    let index = 0;
+    let index=0;
 
     function typing(){
 
-        if(index < text.length){
+        if(index<text.length){
 
-            letterText.innerHTML += text[index];
+            if(text[index]==="\n"){
+                letterText.innerHTML+="<br>";
+            }else{
+                letterText.innerHTML+=text[index];
+            }
 
             index++;
 
-            setTimeout(typing,45);
+            setTimeout(typing,40);
 
         }else{
 
-            // Letter finished typing
-            if(!openedGifts.includes("1")){
-
-                openedGifts.push("1");
-
-                localStorage.setItem(
-                    "openedGifts",
-                    JSON.stringify(openedGifts)
-                );
-
-                document
-                .querySelector('[data-gift="1"]')
-                .classList.add("completed");
-
-                updateProgress();
-            }
+            finishGift();
 
         }
 
@@ -858,6 +825,7 @@ function typeLetter(){
     typing();
 
 }
+
 
 
 
@@ -1666,55 +1634,43 @@ FINAL TYPEWRITER
 
 function startFinalAnimation(){
 
+    const box =
+        document.getElementById("finalTypewriter");
 
-const box =
-document.getElementById(
-"finalTypewriter"
-);
+    box.innerHTML = "";
 
+    let text = finalMessage.join("\n\n");
 
-if(text[index] === "\n"){
-    box.innerHTML += "<br>";
-}else{
-    box.innerHTML += text[index];
-}
+    let index = 0;
 
+    function write(){
 
+        if(index < text.length){
 
-let index=0;
+            if(text[index] === "\n"){
+                box.innerHTML += "<br>";
+            }else{
+                box.innerHTML += text[index];
+            }
 
+            index++;
 
+            setTimeout(write,55);
 
-function write(){
+        }
 
+    }
 
-if(index < text.length){ 
+    write();
 
-
-box.innerHTML +=
-
-text[index]
-.replace(
-"\n",
-"<br>"
-);
-
-
-
-index++;
-
-
-setTimeout(
-write,
-55
-);
-
-
+    createStars();
+    createFireflies();
+    createConfetti();
 
 }
 
 
-}
+{
 
 
 
