@@ -745,19 +745,25 @@ startCake();
 
 window.onclick = (e)=>{
 
-if(e.target === modal){
+    if(e.target===modal){
 
-modal.classList.remove("show");
+        modal.classList.remove("show");
 
-if(voiceAudio){
+        if(voiceAudio){
 
-voiceAudio.pause();
+            voiceAudio.pause();
 
-voiceAudio.currentTime = 0;
+            voiceAudio.currentTime=0;
 
-}
+        }
 
-}
+        if(music){
+
+            music.play();
+
+        }
+
+    }
 
 };
 
@@ -807,64 +813,55 @@ document.getElementById(
 
 
 
-function startLetter(){
-
-letterText.innerHTML = "";
-
-if(!envelope) return;
-
-envelope.classList.remove("open");
-
-envelope.onclick = () => {
-
-envelope.classList.add("open");
-
-setTimeout(() => {
-
-typeLetter();
-
-},900);
-
-};
-
-}
-
-
 
 function typeLetter(){
 
-letterText.innerHTML = "";
+    letterText.innerHTML = "";
 
-let text = letterMessage.join("\n\n");
+    let text = letterMessage.join("<br><br>");
 
-let index = 0;
+    let index = 0;
 
-function typing(){
+    function typing(){
+        
 
-if(index < text.length){
+        if(index < text.length){
+            
 
-if(text[index] === "\n"){
+            letterText.innerHTML += text[index];
+            
 
-letterText.innerHTML += "<br>";
+            index++;
 
-}else{
+            setTimeout(typing,40);
 
-letterText.innerHTML += text[index];
+        }
 
-}
+    }
 
-index++;
-
-setTimeout(typing,45);
-
-}
-
-}
-
-typing();
+    typing();
 
 }
 
+function finishGift(){
+
+    if(!openedGifts.includes("1")){
+
+        openedGifts.push("1");
+
+        localStorage.setItem(
+            "openedGifts",
+            JSON.stringify(openedGifts)
+        );
+
+        document
+        .querySelector('[data-gift="1"]')
+        .classList.add("completed");
+
+        updateProgress();
+    }
+
+}
 
 
 
@@ -1478,9 +1475,24 @@ if(playVoice && voiceAudio){
 
 playVoice.onclick = () => {
 
-voiceAudio.currentTime = 0;
+    if(music){
 
-voiceAudio.play();
+        music.pause();
+
+    }
+
+    voiceAudio.currentTime = 0;
+
+    voiceAudio.play();
+
+};
+voiceAudio.onended = () => {
+
+    if(music){
+
+        music.play();
+
+    }
 
 };
 
@@ -1490,15 +1502,21 @@ if(closeModal){
 
 closeModal.onclick = () => {
 
-modal.classList.remove("show");
+    modal.classList.remove("show");
 
-if(voiceAudio){
+    if(voiceAudio){
 
-voiceAudio.pause();
+        voiceAudio.pause();
 
-voiceAudio.currentTime = 0;
+        voiceAudio.currentTime = 0;
 
-}
+    }
+
+    if(music){
+
+        music.play();
+
+    }
 
 };
 
@@ -1652,7 +1670,7 @@ let index=0;
 function write(){
 
 
-if(index < text.length){
+if(index < text.length){ 
 
 
 box.innerHTML +=
