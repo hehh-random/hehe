@@ -371,6 +371,7 @@ if (continueBtn) {
 
 }
 
+
 if (beginAdventure) {
 
     beginAdventure.onclick = () => {
@@ -480,10 +481,19 @@ openedGifts.includes(id)
 ){
 
 
-card.classList.add(
-"completed"
-);
+function openGift(id, card){
 
+    card.classList.add("opening");
+
+    setTimeout(()=>{
+
+        card.classList.remove("opening");
+
+        openGiftModal(id);
+
+    },600);
+
+}
 
 }
 
@@ -706,11 +716,15 @@ const letterText =
 document.getElementById("letterText");
 
 function startLetter(){
+    
+
+    envelope.classList.remove("open");
+
     letterText.innerHTML="";
+
     envelope.onclick=null;
 
-
-    envelope.onclick = ()=>{
+    envelope.onclick=()=>{
 
         envelope.classList.add("open");
 
@@ -778,8 +792,18 @@ function finishGift(id){
 
     updateProgress();
 
-}
+const msg = document.createElement("div");
 
+msg.className = "gift-popup";
+
+msg.innerHTML = "✨ Gift Unlocked!";
+
+document.body.appendChild(msg);
+
+setTimeout(()=>{
+    msg.remove();
+},1800);
+}
 
 
 
@@ -1005,7 +1029,7 @@ remaining++;
 
 
 
-if(remaining===0){
+if(remaining===0 && !openedGifts.includes("3")){
 
     document
     .getElementById("wishMessage")
@@ -1196,20 +1220,23 @@ document.getElementById(
 
 
 let openedNotes = 0;
-
 function resetMemoryJar(){
+
+    if(openedGifts.includes("4")){
+        memoryText.innerHTML = "❤️ You've already opened every memory.";
+        return;
+    }
 
     openedNotes = 0;
 
     memoryText.innerHTML = "";
 
     memoryButtons.forEach(button=>{
-
         button.classList.remove("open");
-
     });
 
 }
+
 
 memoryButtons.forEach(button=>{
 
@@ -1397,9 +1424,7 @@ const playVoice = document.getElementById("playVoice");
 
 if(playVoice && voiceAudio){
 
-
-playVoice.onclick = () => {
-
+playVoice.onclick = ()=>{
 
     if(music){
 
@@ -1407,35 +1432,22 @@ playVoice.onclick = () => {
 
     }
 
-
     voiceAudio.pause();
-
     voiceAudio.currentTime = 0;
-
 
     voiceAudio.play();
 
-
-};
-
-
-
-voiceAudio.onended = () => {
-
-
-if(music.paused){
-    music.play().catch(()=>{});
-}
-
-    }
-
-
-    // 🎵 Gift 6 completed
     finishGift("6");
 
-
 };
 
+voiceAudio.onended = ()=>{
+
+    if(music.paused){
+        music.play().catch(()=>{});
+    }
+
+};
 
 
 
@@ -2013,7 +2025,7 @@ document.getElementById(
 if(restart){
 
 
-restart.onclick=()=>{
+restart.onclick = ()=>{
 
     document.getElementById("finalTypewriter").innerHTML="";
 
@@ -2022,7 +2034,6 @@ restart.onclick=()=>{
     homeScreen.classList.add("active");
 
 };
-
 }
 
 
