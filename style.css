@@ -301,6 +301,7 @@ BUTTONS
 
 button{
 
+max-width:100%;
 border:none;
 
 cursor:pointer;
@@ -937,6 +938,8 @@ max-height:90vh;
 
 overflow-y:auto;
 
+overscroll-behavior:contain;
+
 padding:45px;
 
 position:relative;
@@ -979,11 +982,11 @@ animation:fadeUp .6s;
 }
 
 
+
 .hidden{
-
-display:none;
-
+    display:none !important;
 }
+
 
 
 .gift-content h2{

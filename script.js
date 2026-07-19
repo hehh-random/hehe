@@ -185,48 +185,39 @@ function unlockVault(){
 
 }
 
-    setTimeout(() => {
+setTimeout(()=>{
 
-        vaultScreen.classList.remove("active");
-        midnightScreen.classList.add("active");
-        startClock();
+    vaultScreen.classList.remove("active");
+    vaultScreen.classList.remove("vault-unlock");
 
-    },1000);
+    midnightScreen.classList.add("active");
+
+    startClock();
+
+},1000);
 
 }
-
 
 
 
 function wrongPassword(){
 
+    passwordMessage.innerHTML="Oops😔.....";
 
-passwordMessage.innerHTML =
-"Oops😔.....";
+    enteredPassword="";
+    passwordInput.value="";
 
+    const box=document.querySelector(".vault-card");
 
-const box =
-document.querySelector(".vault-card");
+    box.classList.add("shake");
 
+    setTimeout(()=>{
 
-box.classList.add(
-"shake"
-);
+        box.classList.remove("shake");
 
-
-setTimeout(()=>{
-
-
-box.classList.remove(
-"shake"
-);
-
-
-},500);
-
+    },500);
 
 }
-
 
 
 /* ===============================
@@ -350,6 +341,7 @@ function checkBirthday(now){
     countdownText.innerHTML =
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
+}
 
 
 
@@ -361,13 +353,17 @@ PAGE NAVIGATION
 
 if (continueBtn) {
 
-continueBtn.onclick = () => {
+continueBtn.onclick=()=>{
 
-midnightScreen.classList.remove("active");
+    const now=new Date();
 
-homeScreen.classList.add("active");
-
-};
+    if(
+        now.getMonth()!==birthdayDate.month-1 ||
+        now.getDate()!==birthdayDate.day
+    ){
+        alert("Not yet... ❤️");
+        return;
+    }
 
 }
 
@@ -634,13 +630,13 @@ createPolaroids();
 
 }
 
-
 if(id==="3"){
-
-startCake();
-
+    startCake();
 }
 
+if(id==="4"){
+    resetMemoryJar();
+}
 
 
 }
@@ -664,11 +660,9 @@ window.onclick = (e)=>{
 
         }
 
-        if(music){
-
-            music.play();
-
-        }
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
     }
 
@@ -712,10 +706,9 @@ const letterText =
 document.getElementById("letterText");
 
 function startLetter(){
-
     letterText.innerHTML="";
+    envelope.onclick=null;
 
-    envelope.classList.remove("open");
 
     envelope.onclick = ()=>{
 
@@ -847,7 +840,12 @@ document.getElementById(
 
 
 gallery.innerHTML="";
-developedPhotos = 0;
+
+if(openedGifts.includes("2")){
+    developedPhotos = photos.length;
+}else{
+    developedPhotos = 0;
+}
 
 
 
@@ -862,6 +860,9 @@ document.createElement(
 
 card.className =
 "polaroid";
+if(openedGifts.includes("2")){
+    card.classList.add("developed");
+}
 
 
 
@@ -938,51 +939,34 @@ BIRTHDAY CAKE
 let cakeStarted=false;
 
 
-
 function startCake(){
 
+    const candles = document.querySelectorAll(".candle");
 
-if(cakeStarted)
-return;
+    document.getElementById("wishMessage")
+        .classList.add("hidden");
 
+    candles.forEach(candle=>{
 
-cakeStarted=true;
+        candle.classList.remove("off");
 
+        const flame = candle.querySelector(".flame");
 
+        flame.classList.remove("hidden");
 
-const candles =
-document.querySelectorAll(
-".candle"
-);
+        candle.onclick = ()=>{
 
+            if(candle.classList.contains("off")) return;
 
+            candle.classList.add("off");
 
-candles.forEach(candle=>{
+            flame.classList.add("hidden");
 
+            checkCandles();
 
-candle.onclick =
-()=>{
+        };
 
-
-candle.classList.add("off");
-
-const flame = candle.querySelector(".flame");
-
-if(flame){
-
-flame.classList.add("hidden");
-
-}
-
-checkCandles();
-
-
-};
-
-
-
-});
-
+    });
 
 }
 
@@ -1213,6 +1197,20 @@ document.getElementById(
 
 let openedNotes = 0;
 
+function resetMemoryJar(){
+
+    openedNotes = 0;
+
+    memoryText.innerHTML = "";
+
+    memoryButtons.forEach(button=>{
+
+        button.classList.remove("open");
+
+    });
+
+}
+
 memoryButtons.forEach(button=>{
 
     button.onclick = ()=>{
@@ -1425,9 +1423,9 @@ playVoice.onclick = () => {
 voiceAudio.onended = () => {
 
 
-    if(music){
-
-        music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
     }
 
@@ -1459,12 +1457,9 @@ closeModal.onclick = () => {
 
     }
 
-    if(music){
-
-        music.play();
-
-    }
-
+if(music.paused){
+    music.play().catch(()=>{});
+}
 };
 
 }
@@ -1792,72 +1787,27 @@ createSparkle,
 STARS
 ===============================*/
 
-
 function createStars(){
 
+    document.querySelectorAll(".star").forEach(star=>star.remove());
 
-for(
-let i=0;
-i<40;
-i++
-){
+    for(let i=0;i<40;i++){
 
+        const star=document.createElement("div");
 
-const star =
-document.createElement(
-"div"
-);
+        star.className="star";
 
+        star.innerHTML="⭐";
 
+        star.style.left=Math.random()*100+"%";
+        star.style.top=Math.random()*100+"%";
+        star.style.animationDelay=Math.random()*3+"s";
 
-star.className =
-"star";
+        document.body.appendChild(star);
 
-
-star.innerHTML =
-"⭐";
-
-
-
-star.style.left =
-
-Math.random()*100
-+
-"%";
-
-
-
-star.style.top =
-
-Math.random()*100
-+
-"%";
-
-
-
-star.style.animationDelay =
-
-Math.random()*3
-+
-"s";
-
-
-
-document.body.appendChild(
-star
-);
-
-
+    }
 
 }
-
-
-
-}
-
-
-
-
 
 
 
@@ -1868,11 +1818,11 @@ FIREFLIES
 
 function createFireflies(){
 
+    document.querySelectorAll(".firefly").forEach(f=>f.remove());
 
-const template =
-document.getElementById(
-"fireflyTemplate"
-);
+    const template =
+    document.getElementById("fireflyTemplate");
+
 
 
 
@@ -2063,28 +2013,17 @@ document.getElementById(
 if(restart){
 
 
-restart.onclick =
-()=>{
+restart.onclick=()=>{
 
+    document.getElementById("finalTypewriter").innerHTML="";
 
-finalScreen
-.classList.remove(
-"active"
-);
+    finalScreen.classList.remove("active");
 
-
-
-homeScreen
-.classList.add(
-"active"
-);
-
-
+    homeScreen.classList.add("active");
 
 };
 
 }
-
 
 
 
