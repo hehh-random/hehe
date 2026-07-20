@@ -1027,7 +1027,7 @@ border-radius:15px;
 
 box-shadow:var(--shadow);
 
-z-index:2;
+z-index:1;
 
 }
 
@@ -1107,11 +1107,9 @@ z-index:5;
 
 
 .envelope.open .letter{
-
-transform:translateY(-10px);
-
+    z-index:5;
+    transform:translateY(-10px);
 }
-
 
 .letter::-webkit-scrollbar{
 
