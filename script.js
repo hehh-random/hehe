@@ -551,6 +551,11 @@ function openGiftModal(id){
 
     console.log("Opening Gift:", id);
 
+    if(!modal){
+        console.error("Modal not found");
+        return;
+    }
+
     modal.classList.add("show");
 
     document.querySelectorAll(".gift-content").forEach(section=>{
@@ -559,37 +564,45 @@ function openGiftModal(id){
 
     const gift = document.getElementById(`gift${id}Content`);
 
-    if(gift){
-        gift.classList.remove("hidden");
-    }else{
-        console.error("Gift not found:", id);
+    if(!gift){
+        console.error("Gift section missing:", id);
         return;
     }
 
-    switch(id){
+    gift.classList.remove("hidden");
 
-        case "1":
-            startLetter();
-            break;
+    try{
 
-        case "2":
-            createPolaroids();
-            break;
+        switch(id){
 
-        case "3":
-            startCake();
-            break;
+            case "1":
+                startLetter();
+                break;
 
-        case "4":
-            resetMemoryJar();
-            break;
+            case "2":
+                createPolaroids();
+                break;
 
-        case "5":
-            createFlowers();
-            break;
+            case "3":
+                startCake();
+                break;
 
-        case "6":
-            break;
+            case "4":
+                resetMemoryJar();
+                break;
+
+            case "5":
+                createFlowers();
+                break;
+
+            case "6":
+                break;
+        }
+
+    }catch(err){
+
+        console.error(err);
+
     }
 
 }
@@ -1433,6 +1446,8 @@ voiceAudio.onended = ()=>{
 
 }
 
+if(closeModal){
+
 closeModal.onclick = ()=>{
 
     modal.classList.remove("show");
@@ -1451,6 +1466,8 @@ closeModal.onclick = ()=>{
     }
 
 };
+
+}
 
 
 
