@@ -360,9 +360,19 @@ if (continueBtn) {
             now.getMonth() !== birthdayDate.month - 1 ||
             now.getDate() !== birthdayDate.day
         ) {
-            alert("Not yet... ❤️");
-            return;
+            document
+            .getElementById("customAlert")
+            .classList.remove("hidden");
         }
+        document
+        .getElementById("closeAlert")
+        .onclick=()=>{
+
+            document
+            .getElementById("customAlert")
+            .classList.add("hidden");
+
+};
 
         midnightScreen.classList.remove("active");
         homeScreen.classList.add("active");
