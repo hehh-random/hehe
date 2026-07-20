@@ -1065,13 +1065,10 @@ opacity:.2;
 
 
 .letter{
-
     position:absolute;
-
     width:92%;
-
     left:4%;
-    bottom:0;
+    bottom:-100%;
 
     min-height:420px;
     max-height:70vh;
@@ -1111,7 +1108,7 @@ z-index:5;
 
 .envelope.open .letter{
 
-transform:translateY(-230px);
+transform:translateY(-10px);
 
 }
 
@@ -1122,11 +1119,7 @@ display:none;
 
 }
 
-.envelope.open .letter{
 
-    transform:translateY(-120px);
-
-}
 
 
 #letterText{
