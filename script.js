@@ -44,9 +44,14 @@ document.getElementById("passwordMessage");
 const continueBtn =
 document.getElementById("continueBtn");
 
-
 const beginAdventure =
 document.getElementById("beginAdventure");
+
+const customAlert =
+document.getElementById("customAlert");
+
+const closeAlert =
+document.getElementById("closeAlert");
 
 const music =
 document.getElementById("bgMusic");
@@ -359,28 +364,26 @@ if (continueBtn) {
         if (
             now.getMonth() !== birthdayDate.month - 1 ||
             now.getDate() !== birthdayDate.day
-        ) {
-            document
-            .getElementById("customAlert")
-            .classList.remove("hidden");
+        ){
+            customAlert.classList.remove("hidden");
+            return;
         }
-        document
-        .getElementById("closeAlert")
-        .onclick=()=>{
-
-            document
-            .getElementById("customAlert")
-            .classList.add("hidden");
-
-};
 
         midnightScreen.classList.remove("active");
         homeScreen.classList.add("active");
-
     };
 
 }
 
+if (closeAlert) {
+
+    closeAlert.onclick = () => {
+
+        customAlert.classList.add("hidden");
+
+    };
+
+}
 
 if (beginAdventure) {
 
@@ -392,8 +395,6 @@ if (beginAdventure) {
     };
 
 }
-
-
 
 /* ===============================
 GIFT SYSTEM
@@ -485,28 +486,9 @@ const id =
 card.dataset.gift;
 
 
-
-if(
-openedGifts.includes(id)
-){
-
-
-function openGift(id, card){
-
-    card.classList.add("opening");
-
-    setTimeout(()=>{
-
-        card.classList.remove("opening");
-
-        openGiftModal(id);
-
-    },600);
-
+if(openedGifts.includes(id)){
+    card.classList.add("completed");
 }
-
-}
-
 
 
 card
@@ -525,16 +507,16 @@ openGift(id,card);
 });
 
 
-
 function openGift(id, card){
 
     card.classList.add("opening");
 
     setTimeout(() => {
 
+        card.classList.remove("opening");
         openGiftModal(id);
 
-    },600);
+    }, 600);
 
 }
 
@@ -578,10 +560,7 @@ document.getElementById(
 );
 
 
-const modalBody =
-document.getElementById(
-"modalBody"
-);
+
 
 
 const closeModal =
@@ -666,27 +645,24 @@ if(id==="4"){
 
 
 
-window.onclick = (e)=>{
+window.addEventListener("click", (e) => {
 
-    if(e.target===modal){
+    if (e.target === modal) {
 
         modal.classList.remove("show");
 
-        if(voiceAudio){
-
+        if (voiceAudio) {
             voiceAudio.pause();
-
-            voiceAudio.currentTime=0;
-
+            voiceAudio.currentTime = 0;
         }
 
-if(music.paused){
-    music.play().catch(()=>{});
-}
+        if (music && music.paused) {
+            music.play().catch(() => {});
+        }
 
     }
 
-};
+});
 
 
 
@@ -781,10 +757,12 @@ function typeLetter(){
 
 
 
-
 function finishGift(id){
 
-    if(openedGifts.includes(id)) return;
+    // Already completed
+    if(openedGifts.includes(id)){
+        return;
+    }
 
     openedGifts.push(id);
 
@@ -802,21 +780,18 @@ function finishGift(id){
 
     updateProgress();
 
-const msg = document.createElement("div");
+    const msg = document.createElement("div");
 
-msg.className = "gift-popup";
+    msg.className = "gift-popup";
+    msg.innerHTML = "✨ Gift Unlocked!";
 
-msg.innerHTML = "✨ Gift Unlocked!";
+    document.body.appendChild(msg);
 
-document.body.appendChild(msg);
+    setTimeout(()=>{
+        msg.remove();
+    },1800);
 
-setTimeout(()=>{
-    msg.remove();
-},1800);
 }
-
-
-
 
 /* ===============================
 GIFT 2
@@ -970,7 +945,6 @@ BIRTHDAY CAKE
 
 
 
-let cakeStarted=false;
 
 
 function startCake(){
