@@ -452,11 +452,15 @@ progressFill.style.width =
 
 if(count >= 6){
 
+    finalButton.disabled = false;
+    finalButton.innerHTML = "✨ Open Final Surprise";
 
-const finalButton =
-document.getElementById(
-"finalButton"
-);
+}else{
+
+    finalButton.disabled = true;
+    finalButton.innerHTML = "Locked";
+
+}
 
 
 
@@ -472,10 +476,10 @@ finalButton.innerHTML =
 }
 
 
+
 }
 
 
-}
 
 
 
@@ -2070,22 +2074,47 @@ document.getElementById(
 );
 
 
-
 if(restart){
-
 
 restart.onclick = ()=>{
 
-    document.getElementById("finalTypewriter").innerHTML="";
+    // Clear everything saved
+    localStorage.removeItem("openedGifts");
+    localStorage.removeItem("letterOpened");
 
+    openedGifts = [];
+
+    // Reset progress
+    updateProgress();
+
+    // Reset gift cards
+    document.querySelectorAll(".gift-card").forEach(card=>{
+        card.classList.remove("completed");
+        card.classList.remove("opening");
+    });
+
+    // Lock final surprise again
+    finalButton.disabled = true;
+    finalButton.innerHTML = "Locked";
+
+    // Clear final message
+    document.getElementById("finalTypewriter").innerHTML = "";
+
+    // Close modal if open
+    modal.classList.remove("show");
+
+    // Stop voice message
+    if(voiceAudio){
+        voiceAudio.pause();
+        voiceAudio.currentTime = 0;
+    }
+
+    // Show treasure hunt again
     finalScreen.classList.remove("active");
-
-    homeScreen.classList.add("active");
+    treasureScreen.classList.add("active");
 
 };
 }
-
-
 
 /* ===============================
 RESET EVERYTHING
