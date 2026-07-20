@@ -1645,7 +1645,7 @@ function startFinalAnimation(){
     createFireflies();
     createConfetti();
 
-}
+
 
 
 
