@@ -961,13 +961,13 @@ card.innerHTML = `
 
 <div class="polaroid-image">
 
-<img src="${photo.image}" alt="Memory">
+<img src="z.jpg" alt="Memory">
 </div>
 
 
 <div class="polaroid-caption">
 
-${photo.caption}
+hehheee 
 
 </div>
 
