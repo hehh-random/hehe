@@ -1068,14 +1068,15 @@ transform-origin:bottom;
 
 }
 
-
 .letter{
 
 position:absolute;
 
 width:90%;
 
-height:190px;
+min-height:220px;
+
+max-height:420px;
 
 left:5%;
 
@@ -1089,16 +1090,26 @@ border-radius:15px;
 
 box-shadow:var(--shadow);
 
-overflow:hidden;
+overflow-y:auto;
+
+overflow-x:hidden;
 
 transition:1s;
+
+scrollbar-width:none;
 
 }
 
 
+.letter::-webkit-scrollbar{
+
+display:none;
+
+}
+
 .envelope.open .letter{
 
-transform:translateY(-120px);
+transform:translateY(-180px);
 
 }
 
@@ -1107,9 +1118,17 @@ transform:translateY(-120px);
 
 font-family:"Caveat";
 
-font-size:1.8rem;
+font-size:1.7rem;
 
-line-height:1.6;
+line-height:1.5;
+
+text-align:left;
+
+white-space:normal;
+
+word-wrap:break-word;
+
+overflow-wrap:break-word;
 
 }
 
@@ -2549,8 +2568,7 @@ box-shadow:
 0 70px #ffd6e8,
 0 105px #ffd6e8;
 
-opacity:.4;
-
+opacity:.15;
 }
 
 
@@ -2870,7 +2888,7 @@ font-size:3rem;
 
 #letterText{
 
-font-size:1.5rem;
+font-size:1.35rem;
 
 }
 

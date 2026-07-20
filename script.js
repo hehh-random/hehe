@@ -314,7 +314,7 @@ function checkBirthday(now){
     ){
 
         countdownTitle.innerHTML =
-            "It's finally your birthday!! 🎉";
+            "It's finally your birthdayyyyyyyyyy!! 🎉";
 
         countdownText.innerHTML =
             "Soooo... are you readyyy? 😛❤️";
@@ -677,19 +677,12 @@ LOVE LETTER
 const letterMessage = [
 
 "yooo bbyyyy💋😚😚",
-
 "Happyyyy Birthdayyyy bachaaaaa😭🎉💋",
-
 "Thank you meri life mai aane ke liye aur itna pyaar, care aur patience rkhne ke liye😭.",
-
 "I wanted to create something special for you.",
-
 "Not just a normal birthday wish...",
-
 "Thank you for all the smiles, laughs, and moments we share.",
-
 "I hope your day is as beautiful as your heart.",
-
 "Happy Birthday ❤️"
 
 ];
@@ -778,15 +771,12 @@ function startLetter(){
 
 
 
-
 function typeLetter(){
-
 
     letterText.innerHTML = "";
 
 
-    let text =
-    letterMessage.join("\n\n");
+    let text = letterMessage.join("\n\n");
 
 
     let index = 0;
@@ -796,50 +786,38 @@ function typeLetter(){
     function typing(){
 
 
-
         if(index < text.length){
-
 
 
             if(text[index] === "\n"){
 
-
-                letterText.innerHTML += "<br>";
-
+                letterText.innerHTML += "<br><br>";
 
             }
 
             else{
 
-
                 letterText.innerHTML += text[index];
 
-
             }
-
 
 
             index++;
 
 
-
             setTimeout(
                 typing,
-                40
+                35
             );
-
 
 
         }
 
         else{
 
-
             typingRunning = false;
 
-
             finishGift("1");
-
 
         }
 
@@ -847,9 +825,7 @@ function typeLetter(){
     }
 
 
-
     typing();
-
 
 }
 
