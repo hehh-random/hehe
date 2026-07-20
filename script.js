@@ -56,6 +56,9 @@ document.getElementById("closeAlert");
 const music =
 document.getElementById("bgMusic");
 
+const finalButton =
+document.getElementById("finalButton");
+
 
 /* ===============================
 LOADING SCREEN
@@ -1515,10 +1518,6 @@ FINAL SURPRISE
 ===============================*/
 
 
-const finalButton =
-document.getElementById(
-"finalButton"
-);
 
 
 const finalScreen =
