@@ -874,27 +874,27 @@ caption:"Our first memory ❤️"
 },
 
 {
-image:"zz.jpeg",
+image:"zz.jpg",
 caption:"A beautiful moment ✨"
 },
 
 {
-image:"zzzz.jpeg",
+image:"zzzz.jpg",
 caption:"Always smiling 💗"
 },
 
 {
-image:"zzzzz.jpeg",
+image:"zzzzz.jpg",
 caption:"Little adventures 🌸"
 },
 
 {
-image:"zzzzzz.jpeg",
+image:"zzzzzz.jpg",
 caption:"Forever memories 🌙"
 },
 
 {
-image:"zzzzzzz.jpeg",
+image:"zzzzzzz.jpg",
 caption:"My favourite person ❤️"
 }
 
