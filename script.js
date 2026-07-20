@@ -1607,36 +1607,31 @@ startFinalAnimation();
 /* ===============================
 FINAL TYPEWRITER
 ===============================*/
-
 function startFinalAnimation(){
 
-    const box =
-        document.getElementById("finalTypewriter");
+    const box = document.getElementById("finalTypewriter");
 
     box.innerHTML = "";
 
-    let text =
-    finalMessage.join("\n\n");
+    const text = finalMessage.join("\n\n");
 
     let index = 0;
 
     function write(){
 
-        if(index < text.length){
-
-            if(text[index] === "\n"){
-                letterText.innerHTML += "<br><br>";
-            }
-            }else{
-                box.innerHTML += text[index];
-            }
-
-            index++;
-
-            setTimeout(write,55);
-
+        if(index >= text.length){
+            return;
         }
 
+        if(text[index] === "\n"){
+            box.innerHTML += "<br>";
+        }else{
+            box.innerHTML += text[index];
+        }
+
+        index++;
+
+        setTimeout(write,55);
     }
 
     write();
@@ -1645,7 +1640,7 @@ function startFinalAnimation(){
     createFireflies();
     createConfetti();
 
-
+}
 
 
 
