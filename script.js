@@ -869,32 +869,32 @@ POLAROID GALLERY
 const photos = [
 
 {
-image:"images/photo1.jpg",
+image:"z.jpeg",
 caption:"Our first memory ❤️"
 },
 
 {
-image:"images/photo2.jpg",
+image:"zz.jpeg",
 caption:"A beautiful moment ✨"
 },
 
 {
-image:"images/photo3.jpg",
+image:"zzzz.jpeg",
 caption:"Always smiling 💗"
 },
 
 {
-image:"images/photo4.jpg",
+image:"zzzzz.jpeg",
 caption:"Little adventures 🌸"
 },
 
 {
-image:"images/photo5.jpg",
+image:"zzzzzz.jpeg",
 caption:"Forever memories 🌙"
 },
 
 {
-image:"images/photo6.jpg",
+image:"zzzzzzz.jpeg",
 caption:"My favourite person ❤️"
 }
 
