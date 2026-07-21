@@ -1351,26 +1351,21 @@ function createFlowers(){
                 "openedFlowerIndexes",
                 JSON.stringify(openedFlowerIndexes)
             );
-            
-            if(openedFlowers >= reasons.length){
-                console.log("Flower gift completed!");
-                finishGift("5");
 
-}
+            if(openedFlowerIndexes.length === reasons.length){
+                finishGift("5");
             }
 
         };
 
         garden.appendChild(flower);
-    )
-    };
+
+    });
+
+}
 
 
 
-
-
-
-createFlowers();
 
 
 
