@@ -812,17 +812,17 @@ POLAROID GALLERY
 
 const photos = [
 
-{image:"z.jpg",caption:"❤️"},
+{image:"zss1.jpg",caption:"❤️"},
 
-{image:"zz.jpg",caption:"✨"},
+{image:"zss2.jpg",caption:"✨"},
 
-{image:"zzz.jpg",caption:"🌸"},
+{image:"zss3.jpg",caption:"🌸"},
 
-{image:"zzzz.jpg",caption:"💗"},
+{image:"zss4.jpg",caption:"💗"},
 
-{image:"zzzzz.jpg",caption:"🌙"},
+{image:"zss5.jpg",caption:"🌙"},
 
-{image:"zzzzzz.jpg",caption:"❤️"}
+{image:"zss6.jpg",caption:"❤️"}
 
 ];
 
