@@ -569,6 +569,13 @@ function openGiftModal(id){
     }
 
     modal.classList.add("show");
+    const modalContent = document.querySelector(".modal-content");
+
+    modalContent.classList.remove("letter-mode");
+
+    if(id === "1"){
+        modalContent.classList.add("letter-mode");
+    }
 
     document.querySelectorAll(".gift-content").forEach(section=>{
         section.classList.add("hidden");
@@ -628,7 +635,7 @@ window.addEventListener("click", (e) => {
     if (e.target === modal) {
 
         modal.classList.remove("show");
-
+        document.querySelector(".modal-content").classList.remove("letter-mode");
         if (voiceAudio) {
             voiceAudio.pause();
             voiceAudio.currentTime = 0;
@@ -1413,7 +1420,8 @@ if(closeModal){
 closeModal.onclick = ()=>{
 
     modal.classList.remove("show");
-
+    document.querySelector(".modal-content").classList.remove("letter-mode");
+    
     document.querySelectorAll(".gift-content").forEach(section=>{
         section.classList.add("hidden");
     });

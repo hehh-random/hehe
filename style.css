@@ -941,6 +941,11 @@ MODAL
 
 }
 
+/* Gift 1 only */
+.modal-content.letter-mode{
+    overflow:hidden;
+}
+
 
 .closeModal{
 
