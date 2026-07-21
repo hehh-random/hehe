@@ -768,7 +768,6 @@ function startLetter(){
 function typeLetter(){
 
     let text = letterMessage.join("\n\n");
-
     let index = 0;
 
     letterText.innerHTML = "";
@@ -789,7 +788,9 @@ function typeLetter(){
             letterText.innerHTML += "<br>";
 
         }else{
-            letterText.textContent += text[index];
+
+            letterText.innerHTML += text[index];
+
         }
 
         index++;
@@ -801,7 +802,6 @@ function typeLetter(){
     typing();
 
 }
-
 
 
 function finishGift(id){
