@@ -1310,113 +1310,63 @@ const reasons = [
 
 function createFlowers(){
 
+    const garden = document.getElementById("flowerGarden");
 
-const garden =
-document.getElementById(
-"flowerGarden"
-);
+    if(!garden) return;
 
+    garden.innerHTML = "";
 
+    let openedFlowerIndexes =
+        JSON.parse(localStorage.getItem("openedFlowerIndexes")) || [];
 
-if(!garden)
-return;
+    reasons.forEach((reason,index)=>{
 
+        const flower = document.createElement("div");
 
+        flower.className = "flower";
 
-garden.innerHTML="";
+        flower.innerHTML = `
+            <div class="flower-inner">
+                <div class="flower-front">🌸</div>
+                <div class="flower-back">${reason}</div>
+            </div>
+        `;
 
+        // Restore already opened flowers
+        if(openedFlowerIndexes.includes(index)){
+            flower.classList.add("open");
+        }
 
+        flower.onclick = ()=>{
 
-let openedFlowers =
-Number(localStorage.getItem("openedFlowers")) || 0;
+            if(flower.classList.contains("open")){
+                return;
+            }
 
-reasons.forEach(reason=>{
+            flower.classList.add("open");
 
+            openedFlowerIndexes.push(index);
 
-const flower =
-document.createElement(
-"div"
-);
-
-
-
-flower.className =
-"flower";
-
-
-
-flower.innerHTML = `
-
-<div class="flower-inner">
-
-
-<div class="flower-front">
-
-🌸
-
-</div>
-
-
-<div class="flower-back">
-
-${reason}
-
-</div>
-
-
-</div>
-
-`;
-
-
-flower.onclick = ()=>{
-
-
-if(
-flower.classList.contains("open")
-){
-
-return;
+            localStorage.setItem(
+                "openedFlowerIndexes",
+                JSON.stringify(openedFlowerIndexes)
+            );
+            
+            if(openedFlowers >= reasons.length){
+                console.log("Flower gift completed!");
+                finishGift("5");
 
 }
+            }
 
+        };
 
-flower.classList.add("open");
+        garden.appendChild(flower);
 
-openedFlowers++;
-
-localStorage.setItem(
-"openedFlowers",
-openedFlowers
-);
-
-
-if(
-openedFlowers === reasons.length
-){
-
-
-finishGift("5");
-
-
-}
-
-
-};
+    };
 
 
 
-
-garden.appendChild(
-flower
-);
-
-
-
-});
-
-
-}
 
 
 
@@ -2026,17 +1976,22 @@ if(restart){
 
 
 
-    // Clear everything saved
-    localStorage.removeItem("openedGifts");
-    localStorage.removeItem("letterOpened");
+// Clear everything saved
+localStorage.removeItem("openedGifts");
+localStorage.removeItem("letterOpened");
 
-    openedGifts = [];
-    
-    developedPhotos = 0;
+// Flower Gift
+localStorage.removeItem("openedFlowerIndexes");
+localStorage.removeItem("openedFlowers");
 
-    localStorage.removeItem(
-        "developedPhotos"
-    );
+openedGifts = [];
+
+developedPhotos = 0;
+
+localStorage.removeItem("developedPhotos");
+
+
+
 
     openedNotes = 0;
     resetMemoryJar();
