@@ -1622,7 +1622,6 @@ function startFinalAnimation(){
     createStars();
     createFireflies();
     createConfetti();
-
 }
 
 
@@ -2038,13 +2037,20 @@ restart.onclick = ()=>{
     // Close modal if open
     modal.classList.remove("show");
 
-    // Stop voice message
-    if(voiceAudio){
-        voiceAudio.pause();
-        voiceAudio.currentTime = 0;
-    }
+// Stop voice message
 
-    // Show treasure hunt again
+if(voiceAudio){
+    voiceAudio.pause();
+    voiceAudio.currentTime = 0;
+}
+
+// Remove final effects
+
+document.querySelectorAll(".star").forEach(e => e.remove());
+document.querySelectorAll(".firefly").forEach(e => e.remove());
+
+// Show home again
+
 finalScreen.classList.remove("active");
 treasureScreen.classList.remove("active");
 homeScreen.classList.add("active");
