@@ -698,70 +698,41 @@ let typingRunning = false;
 
 function startLetter(){
 
-
     envelope.classList.remove("open");
-
-
     letterText.innerHTML = "";
+    typingRunning = false;
 
-
-    // If already opened before
+    // Already opened before
     if(localStorage.getItem("letterOpened") === "true"){
 
-
         envelope.classList.add("open");
+        letterText.innerHTML = letterMessage.join("<br><br>");
 
-
-        letterText.innerHTML =
-        letterMessage.join("<br><br>");
-
+        // Mark Gift 1 as completed
+        finishGift("1");
 
         return;
-
     }
 
+envelope.onclick = ()=>{
 
+    if(typingRunning) return;
 
-    envelope.onclick = ()=>{
+    typingRunning = true;
 
+    localStorage.setItem("letterOpened","true");
 
-        // Stop double clicking
-        if(typingRunning){
-            return;
-        }
+    envelope.classList.add("open");
 
+    finishGift("1");
 
+    setTimeout(()=>{
+        typeLetter();
+    },700);
 
-        // Save opened status
-        localStorage.setItem(
-            "letterOpened",
-            "true"
-        );
-
-
-
-        envelope.classList.add("open");
-
-
-
-        typingRunning = true;
-
-
-
-        setTimeout(()=>{
-
-
-            typeLetter();
-
-
-
-        },700);
-
-
-
-    };
-
+};
 }
+
 
 
 
@@ -778,25 +749,18 @@ function typeLetter(){
 
             typingRunning = false;
 
-            finishGift("1");
-
             return;
         }
 
         if(text[index] === "\n"){
-
             letterText.innerHTML += "<br>";
-
         }else{
-
             letterText.innerHTML += text[index];
-
         }
 
         index++;
 
         setTimeout(typing,45);
-
     }
 
     typing();
