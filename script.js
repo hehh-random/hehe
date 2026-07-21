@@ -1362,7 +1362,7 @@ function createFlowers(){
         };
 
         garden.appendChild(flower);
-
+    )
     };
 
 
