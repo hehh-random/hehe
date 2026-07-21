@@ -997,19 +997,13 @@ LOVE LETTER
 
 
 .envelope{
-
-width:320px;
-
-height:230px;
-
-margin:40px auto;
-
-position:relative;
-
-cursor:pointer;
-
-perspective:1000px;
-
+    width:320px;
+    height:230px;
+    margin:80px auto;
+    position:relative;
+    cursor:pointer;
+    perspective:1000px;
+    overflow:visible;
 }
 
 
@@ -1050,50 +1044,43 @@ transform:translate(-50%,-50%);
 
 
 .envelope.open .envelope-front{
-
-transform:rotateX(180deg);
-
-transition:1s;
-
-transform-origin:bottom;
-
-opacity:.2;
-
+    transform:rotateX(180deg);
+    transform-origin:bottom;
+    transition:1s;
+    opacity:.2;
+    backface-visibility:hidden;
 }
-
 
 
 
 .letter{
     position:absolute;
-    width:92%;
     left:4%;
-    bottom:-220px;
+    bottom:0;
 
-    min-height:420px;
-    max-height:70vh;
-
-    overflow-y:auto;
+    width:92%;
+    height:210px;
 
     background:linear-gradient(white,#fff8fb);
 
-    padding:35px;
+    padding:30px;
+
     border-radius:18px;
+
     box-shadow:var(--shadow);
 
-    overflow-x:hidden;
-    transition:1s;
+    overflow-y:auto;
 
-    scrollbar-width:none;
+    transform:translateY(0);
+
+    transition:0.9s ease;
 
     z-index:1;
 }
 
 
-
 .envelope.open .letter{
-    z-index:1;
-    transform:translateY(-180px);
+    transform:translateY(-170px);
 }
 
 .letter::-webkit-scrollbar{
