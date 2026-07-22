@@ -1449,7 +1449,7 @@ document.getElementById(
 
 const finalMessage = [
 
-"I hope this little surprise made you smile ❤️",
+"I hope this website made you smile ❤️",
 
 "I wanted to create something special",
 
@@ -1461,7 +1461,7 @@ const finalMessage = [
 
 "Keep smiling and keep shining 🌙",
 
-"Happy Birthday ❤️"
+"Happppyyyyy Birthdayyyyyyyyyyyyy💋🫶😚"
 
 ];
 
@@ -2031,7 +2031,7 @@ card.classList.remove(
 
 
 alert(
-"Birthday surprise reset 💗"
+"reset 💗"
 );
 
 
