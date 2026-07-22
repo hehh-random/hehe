@@ -1254,7 +1254,7 @@ const reasons = [
 
 "You understand me like nobody else 💗",
 
-"ap charger ho kya? -kyuki apke bina energy🌚 nahi aati.",
+"You deserve all the good things in life. 🌷",
 
 "You support me when I need it ⭐",
 
@@ -1264,7 +1264,7 @@ const reasons = [
 
 "You bring happiness everywhere you go 🌷",
 
-"Roses are red 🌹, Violets are blue 💙,u opened this note...,Just to know how much i love uuhh. 😭"
+"I hope you always have a reason to smile. ☀️",
 ];
 
 
