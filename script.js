@@ -1449,15 +1449,7 @@ document.getElementById(
 
 const finalMessage = [
 
-"I hope this website made you smile ❤️",
-
-"I wanted to create something special",
-
-"because you are someone special ✨",
-
-"Thank you for every laugh, every memory,",
-
-"and every little moment we share 🌸",
+"I hope this website made you smile ❤️, I wanted to create something special because you are someone special ✨...Thank you for every laugh, every memory..and every little moment we share 🌸",
 
 "Keep smiling and keep shining 🌙",
 
