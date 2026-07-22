@@ -1254,18 +1254,17 @@ const reasons = [
 
 "You understand me like nobody else 💗",
 
-"Your laugh is my favourite sound 🌙",
+"ap charger ho kya? -kyuki apke bina energy🌚 nahi aati.",
 
 "You support me when I need it ⭐",
 
-"You make normal days special 💕",
+"You make my day special 💕",
 
 "You are my favourite person ❤️",
 
 "You bring happiness everywhere you go 🌷",
 
-"Because you are simply you 💖"
-
+"Roses are red 🌹, Violets are blue 💙,u opened this note...,Just to know how much i love uuhh. 😭"
 ];
 
 
