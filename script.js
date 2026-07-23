@@ -3,7 +3,7 @@ const PASSWORD = "2407";
 
 const birthdayDate = {
     month: 7,   // Change month (1-12)
-    day: 23      // Change birthday date
+    day: 24      // Change birthday date
 };
 
 
